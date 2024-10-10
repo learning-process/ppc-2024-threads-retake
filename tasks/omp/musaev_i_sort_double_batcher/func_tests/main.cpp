@@ -28,14 +28,14 @@ TEST(musaev_i_sort_double_batcher, array) {
   std::vector<double> out_par(array.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> RSDBDataOmp = std::make_shared<ppc::core::TaskData>();
-  RSDBDataOmp->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
-  RSDBDataOmp->inputs_count.emplace_back(array.size());
-  RSDBDataOmp->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_par.data()));
-  RSDBDataOmp->outputs_count.emplace_back(out_par.size());
+  std::shared_ptr<ppc::core::TaskData> MIBDataOmp = std::make_shared<ppc::core::TaskData>();
+  MIBDataOmp->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
+  MIBDataOmp->inputs_count.emplace_back(array.size());
+  MIBDataOmp->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_par.data()));
+  MIBDataOmp->outputs_count.emplace_back(out_par.size());
 
   // Create Task
-  MusaevIlgarOmp::RadixSortDoubleBatcherOmpParallel testRDSBompParallel(RSDBDataOmp);
+  MusaevIlgarOmp::RadixSortDoubleBatcherOmpParallel testRDSBompParallel(MIBDataOmp);
   ASSERT_EQ(testRDSBompParallel.validation(), true);
   testRDSBompParallel.pre_processing();
   testRDSBompParallel.run();
@@ -75,14 +75,14 @@ TEST(musaev_i_sort_double_batcher, test_array_2) {
   std::vector<double> out_par(array.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> RSDBDataOmp = std::make_shared<ppc::core::TaskData>();
-  RSDBDataOmp->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
-  RSDBDataOmp->inputs_count.emplace_back(array.size());
-  RSDBDataOmp->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_par.data()));
-  RSDBDataOmp->outputs_count.emplace_back(out_par.size());
+  std::shared_ptr<ppc::core::TaskData> MIBDataOmp = std::make_shared<ppc::core::TaskData>();
+  MIBDataOmp->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
+  MIBDataOmp->inputs_count.emplace_back(array.size());
+  MIBDataOmp->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_par.data()));
+  MIBDataOmp->outputs_count.emplace_back(out_par.size());
 
   // Create Task
-  MusaevIlgarOmp::RadixSortDoubleBatcherOmpParallel testRDSBompParallel(RSDBDataOmp);
+  MusaevIlgarOmp::RadixSortDoubleBatcherOmpParallel testRDSBompParallel(MIBDataOmp);
   ASSERT_EQ(testRDSBompParallel.validation(), true);
   testRDSBompParallel.pre_processing();
   testRDSBompParallel.run();
@@ -116,14 +116,14 @@ TEST(musaev_i_sort_double_batcher, test_empty) {
   std::vector<double> out_par(array.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> RSDBDataOmp = std::make_shared<ppc::core::TaskData>();
-  RSDBDataOmp->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
-  RSDBDataOmp->inputs_count.emplace_back(array.size());
-  RSDBDataOmp->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_par.data()));
-  RSDBDataOmp->outputs_count.emplace_back(out_par.size());
+  std::shared_ptr<ppc::core::TaskData> MIBDataOmp = std::make_shared<ppc::core::TaskData>();
+  MIBDataOmp->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
+  MIBDataOmp->inputs_count.emplace_back(array.size());
+  MIBDataOmp->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_par.data()));
+  MIBDataOmp->outputs_count.emplace_back(out_par.size());
 
   // Create Task
-  MusaevIlgarOmp::RadixSortDoubleBatcherOmpParallel testRDSBompParallel(RSDBDataOmp);
+  MusaevIlgarOmp::RadixSortDoubleBatcherOmpParallel testRDSBompParallel(MIBDataOmp);
   ASSERT_EQ(testRDSBompParallel.validation(), true);
   testRDSBompParallel.pre_processing();
   testRDSBompParallel.run();
@@ -157,14 +157,14 @@ TEST(musaev_i_sort_double_batcher, test_one_number) {
   std::vector<double> out_par(array.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> RSDBDataOmp = std::make_shared<ppc::core::TaskData>();
-  RSDBDataOmp->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
-  RSDBDataOmp->inputs_count.emplace_back(array.size());
-  RSDBDataOmp->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_par.data()));
-  RSDBDataOmp->outputs_count.emplace_back(out_par.size());
+  std::shared_ptr<ppc::core::TaskData> MIBDataOmp = std::make_shared<ppc::core::TaskData>();
+  MIBDataOmp->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
+  MIBDataOmp->inputs_count.emplace_back(array.size());
+  MIBDataOmp->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_par.data()));
+  MIBDataOmp->outputs_count.emplace_back(out_par.size());
 
   // Create Task
-  MusaevIlgarOmp::RadixSortDoubleBatcherOmpParallel testRDSBompParallel(RSDBDataOmp);
+  MusaevIlgarOmp::RadixSortDoubleBatcherOmpParallel testRDSBompParallel(MIBDataOmp);
   ASSERT_EQ(testRDSBompParallel.validation(), true);
   testRDSBompParallel.pre_processing();
   testRDSBompParallel.run();
@@ -198,14 +198,14 @@ TEST(musaev_i_sort_double_batcher, test_with_negative) {
   std::vector<double> out_par(array.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> RSDBDataOmp = std::make_shared<ppc::core::TaskData>();
-  RSDBDataOmp->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
-  RSDBDataOmp->inputs_count.emplace_back(array.size());
-  RSDBDataOmp->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_par.data()));
-  RSDBDataOmp->outputs_count.emplace_back(out_par.size());
+  std::shared_ptr<ppc::core::TaskData> MIBDataOmp = std::make_shared<ppc::core::TaskData>();
+  MIBDataOmp->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
+  MIBDataOmp->inputs_count.emplace_back(array.size());
+  MIBDataOmp->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_par.data()));
+  MIBDataOmp->outputs_count.emplace_back(out_par.size());
 
   // Create Task
-  MusaevIlgarOmp::RadixSortDoubleBatcherOmpParallel testRDSBompParallel(RSDBDataOmp);
+  MusaevIlgarOmp::RadixSortDoubleBatcherOmpParallel testRDSBompParallel(MIBDataOmp);
   ASSERT_EQ(testRDSBompParallel.validation(), true);
   testRDSBompParallel.pre_processing();
   testRDSBompParallel.run();
@@ -240,14 +240,14 @@ TEST(musaev_i_sort_double_batcher, test_random) {
   std::vector<double> out_par(array.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> RSDBDataOmp = std::make_shared<ppc::core::TaskData>();
-  RSDBDataOmp->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
-  RSDBDataOmp->inputs_count.emplace_back(array.size());
-  RSDBDataOmp->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_par.data()));
-  RSDBDataOmp->outputs_count.emplace_back(out_par.size());
+  std::shared_ptr<ppc::core::TaskData> MIBDataOmp = std::make_shared<ppc::core::TaskData>();
+  MIBDataOmp->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
+  MIBDataOmp->inputs_count.emplace_back(array.size());
+  MIBDataOmp->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_par.data()));
+  MIBDataOmp->outputs_count.emplace_back(out_par.size());
 
   // Create Task
-  MusaevIlgarOmp::RadixSortDoubleBatcherOmpParallel testRDSBompParallel(RSDBDataOmp);
+  MusaevIlgarOmp::RadixSortDoubleBatcherOmpParallel testRDSBompParallel(MIBDataOmp);
   ASSERT_EQ(testRDSBompParallel.validation(), true);
   testRDSBompParallel.pre_processing();
   testRDSBompParallel.run();
