@@ -11,14 +11,14 @@ TEST(musaev_i_sort_double_batcher, array) {
   std::vector<double> out_seq(array.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> RSDBDataSeq = std::make_shared<ppc::core::TaskData>();
-  RSDBDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
-  RSDBDataSeq->inputs_count.emplace_back(array.size());
-  RSDBDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_seq.data()));
-  RSDBDataSeq->outputs_count.emplace_back(out_seq.size());
+  std::shared_ptr<ppc::core::TaskData> MIBDataSeq = std::make_shared<ppc::core::TaskData>();
+  MIBDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
+  MIBDataSeq->inputs_count.emplace_back(array.size());
+  MIBDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_seq.data()));
+  MIBDataSeq->outputs_count.emplace_back(out_seq.size());
 
   // Create Task
-  MusaevIlgarOmp::RadixSortDoubleBatcherSequential testRDSBSequential(RSDBDataSeq);
+  MusaevIlgarOmp::MyRadixSortDouble testRDSBSequential(MIBDataSeq);
   ASSERT_EQ(testRDSBSequential.validation(), true);
   testRDSBSequential.pre_processing();
   testRDSBSequential.run();
@@ -58,14 +58,14 @@ TEST(musaev_i_sort_double_batcher, test_array_2) {
   std::vector<double> out_seq(array.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> RSDBDataSeq = std::make_shared<ppc::core::TaskData>();
-  RSDBDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
-  RSDBDataSeq->inputs_count.emplace_back(array.size());
-  RSDBDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_seq.data()));
-  RSDBDataSeq->outputs_count.emplace_back(out_seq.size());
+  std::shared_ptr<ppc::core::TaskData> MIBDataSeq = std::make_shared<ppc::core::TaskData>();
+  MIBDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
+  MIBDataSeq->inputs_count.emplace_back(array.size());
+  MIBDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_seq.data()));
+  MIBDataSeq->outputs_count.emplace_back(out_seq.size());
 
   // Create Task
-  MusaevIlgarOmp::RadixSortDoubleBatcherSequential testRDSBSequential(RSDBDataSeq);
+  MusaevIlgarOmp::MyRadixSortDouble testRDSBSequential(MIBDataSeq);
   ASSERT_EQ(testRDSBSequential.validation(), true);
   testRDSBSequential.pre_processing();
   testRDSBSequential.run();
@@ -99,14 +99,14 @@ TEST(musaev_i_sort_double_batcher, test_empty) {
   std::vector<double> out_seq(array.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> RSDBDataSeq = std::make_shared<ppc::core::TaskData>();
-  RSDBDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
-  RSDBDataSeq->inputs_count.emplace_back(array.size());
-  RSDBDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_seq.data()));
-  RSDBDataSeq->outputs_count.emplace_back(out_seq.size());
+  std::shared_ptr<ppc::core::TaskData> MIBDataSeq = std::make_shared<ppc::core::TaskData>();
+  MIBDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
+  MIBDataSeq->inputs_count.emplace_back(array.size());
+  MIBDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_seq.data()));
+  MIBDataSeq->outputs_count.emplace_back(out_seq.size());
 
   // Create Task
-  MusaevIlgarOmp::RadixSortDoubleBatcherSequential testRDSBSequential(RSDBDataSeq);
+  MusaevIlgarOmp::MyRadixSortDouble testRDSBSequential(MIBDataSeq);
   ASSERT_EQ(testRDSBSequential.validation(), true);
   testRDSBSequential.pre_processing();
   testRDSBSequential.run();
@@ -140,14 +140,14 @@ TEST(musaev_i_sort_double_batcher, test_one_number) {
   std::vector<double> out_seq(array.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> RSDBDataSeq = std::make_shared<ppc::core::TaskData>();
-  RSDBDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
-  RSDBDataSeq->inputs_count.emplace_back(array.size());
-  RSDBDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_seq.data()));
-  RSDBDataSeq->outputs_count.emplace_back(out_seq.size());
+  std::shared_ptr<ppc::core::TaskData> MIBDataSeq = std::make_shared<ppc::core::TaskData>();
+  MIBDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
+  MIBDataSeq->inputs_count.emplace_back(array.size());
+  MIBDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_seq.data()));
+  MIBDataSeq->outputs_count.emplace_back(out_seq.size());
 
   // Create Task
-  MusaevIlgarOmp::RadixSortDoubleBatcherSequential testRDSBSequential(RSDBDataSeq);
+  MusaevIlgarOmp::MyRadixSortDouble testRDSBSequential(MIBDataSeq);
   ASSERT_EQ(testRDSBSequential.validation(), true);
   testRDSBSequential.pre_processing();
   testRDSBSequential.run();
@@ -181,14 +181,14 @@ TEST(musaev_i_sort_double_batcher, test_with_negative) {
   std::vector<double> out_seq(array.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> RSDBDataSeq = std::make_shared<ppc::core::TaskData>();
-  RSDBDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
-  RSDBDataSeq->inputs_count.emplace_back(array.size());
-  RSDBDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_seq.data()));
-  RSDBDataSeq->outputs_count.emplace_back(out_seq.size());
+  std::shared_ptr<ppc::core::TaskData> MIBDataSeq = std::make_shared<ppc::core::TaskData>();
+  MIBDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
+  MIBDataSeq->inputs_count.emplace_back(array.size());
+  MIBDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_seq.data()));
+  MIBDataSeq->outputs_count.emplace_back(out_seq.size());
 
   // Create Task
-  MusaevIlgarOmp::RadixSortDoubleBatcherSequential testRDSBSequential(RSDBDataSeq);
+  MusaevIlgarOmp::MyRadixSortDouble testRDSBSequential(MIBDataSeq);
   ASSERT_EQ(testRDSBSequential.validation(), true);
   testRDSBSequential.pre_processing();
   testRDSBSequential.run();
@@ -223,14 +223,14 @@ TEST(musaev_i_sort_double_batcher, test_random) {
   std::vector<double> out_seq(array.size());
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> RSDBDataSeq = std::make_shared<ppc::core::TaskData>();
-  RSDBDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
-  RSDBDataSeq->inputs_count.emplace_back(array.size());
-  RSDBDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_seq.data()));
-  RSDBDataSeq->outputs_count.emplace_back(out_seq.size());
+  std::shared_ptr<ppc::core::TaskData> MIBDataSeq = std::make_shared<ppc::core::TaskData>();
+  MIBDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(array.data()));
+  MIBDataSeq->inputs_count.emplace_back(array.size());
+  MIBDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out_seq.data()));
+  MIBDataSeq->outputs_count.emplace_back(out_seq.size());
 
   // Create Task
-  MusaevIlgarOmp::RadixSortDoubleBatcherSequential testRDSBSequential(RSDBDataSeq);
+  MusaevIlgarOmp::MyRadixSortDouble testRDSBSequential(MIBDataSeq);
   ASSERT_EQ(testRDSBSequential.validation(), true);
   testRDSBSequential.pre_processing();
   testRDSBSequential.run();

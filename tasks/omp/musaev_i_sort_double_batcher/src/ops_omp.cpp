@@ -5,7 +5,7 @@ namespace MusaevIlgarOmp {
 
 constexpr int mySizeD = sizeof(double);
 
-bool RadixSortDoubleBatcherSequential::pre_processing() {
+bool MyRadixSortDouble::pre_processing() {
   internal_order_test();
   arr = std::vector<double>(taskData->inputs_count[0]);
 
@@ -16,19 +16,19 @@ bool RadixSortDoubleBatcherSequential::pre_processing() {
   return true;
 }
 
-bool RadixSortDoubleBatcherSequential::validation() {
+bool MyRadixSortDouble::validation() {
   internal_order_test();
   // Check count elements of output
   return taskData->inputs_count[0] == taskData->outputs_count[0];
 }
 
-bool RadixSortDoubleBatcherSequential::run() {
+bool MyRadixSortDouble::run() {
   internal_order_test();
   res = radixSortBatcherSeq(arr);
   return true;
 }
 
-bool RadixSortDoubleBatcherSequential::post_processing() {
+bool MyRadixSortDouble::post_processing() {
   internal_order_test();
   std::copy(res.begin(), res.end(), reinterpret_cast<double *>(taskData->outputs[0]));
   return true;
@@ -154,7 +154,7 @@ std::vector<double> batchersMergeOmp(std::vector<std::vector<double>> &subvector
   return merged;
 }
 
-void partSortOmp(std::vector<std::vector<double>> &parts, std::vector<double> &side) {
+void myPartSortOmp(std::vector<std::vector<double>> &parts, std::vector<double> &side) {
 #pragma omp parallel for
   for (int i = 0; i < mySizeD; ++i) {
     for (unsigned long int j = 0; j < side.size(); ++j) {
@@ -192,12 +192,12 @@ std::vector<double> radixSortBatcherOmp(std::vector<double> vec) {
 #pragma omp section
     {
       std::vector<std::vector<double>> partsNegative(256);
-      partSortOmp(partsNegative, negative);
+      myPartSortOmp(partsNegative, negative);
     }
 #pragma omp section
     {
       std::vector<std::vector<double>> partsPositive(256);
-      partSortOmp(partsPositive, positive);
+      myPartSortOmp(partsPositive, positive);
     }
   }
 
