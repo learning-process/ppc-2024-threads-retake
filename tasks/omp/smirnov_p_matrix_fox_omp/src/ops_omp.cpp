@@ -87,7 +87,7 @@ bool FoxBlockedParallel::pre_processing() {
 bool FoxBlockedParallel::run() {
   internal_order_test();
 
-  #pragma omp parallel for
+#pragma omp parallel for
   for (int ii = 0; ii < static_cast<int>(A.size()); ii += block_size) {
     for (std::vector<double>::size_type jj = 0; jj < B[0].size();
          jj += static_cast<std::vector<double>::size_type>(block_size)) {

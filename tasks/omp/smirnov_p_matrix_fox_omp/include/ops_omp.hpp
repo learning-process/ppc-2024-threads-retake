@@ -12,9 +12,7 @@ using Matrix = std::vector<std::vector<double>>;
 
 class FoxBlockedSequential : public ppc::core::Task {
  public:
-  explicit FoxBlockedSequential(
-    std::shared_ptr<ppc::core::TaskData> taskData_) : Task(
-      std::move(taskData_)) {}
+  explicit FoxBlockedSequential(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;
@@ -27,9 +25,7 @@ class FoxBlockedSequential : public ppc::core::Task {
 };
 class FoxBlockedParallel : public ppc::core::Task {
  public:
-  explicit FoxBlockedParallel(
-    std::shared_ptr<ppc::core::TaskData> taskData_) : Task(
-      std::move(taskData_)) {}
+  explicit FoxBlockedParallel(std::shared_ptr<ppc::core::TaskData> taskData_) : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;
@@ -40,5 +36,4 @@ class FoxBlockedParallel : public ppc::core::Task {
   Matrix C{};
   int block_size{};
 };
-
 }  // namespace SmirnovOMP

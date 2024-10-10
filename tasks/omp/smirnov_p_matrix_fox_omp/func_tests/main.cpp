@@ -5,37 +5,46 @@
 
 using namespace SmirnovOMP;
 
-TEST(FoxBlockedParallel, MatrixMultiplication2x2) {
+TEST(FoxBlockedParallel, MatrixMultiplication3x3) {
   // Define input matrices
-  std::vector<double> matrixA = {1, 2, 3, 4};
-  std::vector<double> matrixB = {4, 3, 2, 1};
-  std::vector<double> expectedOutput = {8, 5, 20, 13};
-  // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskData = std::make_shared<ppc::core::TaskData>();
+  std::vector<double> matrixA = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+  std::vector<double> matrixB = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+  std::vector<double> expectedOutput = {30, 24, 18, 66, 54, 42, 102, 84, 66};
 
-  taskData->inputs.emplace_back(reinterpret_cast<uint8_t *>(matrixA.data()));
-  taskData->inputs_count.emplace_back(2);
-  taskData->inputs_count.emplace_back(2);
-  taskData->inputs.emplace_back(reinterpret_cast<uint8_t *>(matrixB.data()));
-  taskData->inputs_count.emplace_back(2);
-  taskData->inputs_count.emplace_back(2);
-  taskData->outputs.emplace_back(reinterpret_cast<uint8_t *>(new double[4]()));
-  taskData->outputs_count.emplace_back(2);
-  taskData->outputs_count.emplace_back(2);
-  // Create Task
+  // Create TaskData
+  auto taskData = std::make_shared<ppc::core::TaskData>();
+
+  // Add matrices A and B as inputs
+  taskData->inputs.emplace_back(reinterpret_cast<uint8_t*>(matrixA.data()));
+  taskData->inputs_count.emplace_back(3);
+  taskData->inputs_count.emplace_back(3);
+  taskData->inputs.emplace_back(reinterpret_cast<uint8_t*>(matrixB.data()));
+  taskData->inputs_count.emplace_back(3);
+  taskData->inputs_count.emplace_back(3);
+
+  // Allocate memory for output and add it as output
+  auto output = new double[9];
+  taskData->outputs.emplace_back(reinterpret_cast<uint8_t*>(output));
+  taskData->outputs_count.emplace_back(3);
+  taskData->outputs_count.emplace_back(3);
+
+  // Create and run the FoxBlockedParallel algorithm
   FoxBlockedParallel foxBlockedParallel(taskData);
   foxBlockedParallel.validation();
   foxBlockedParallel.pre_processing();
-  auto *output = reinterpret_cast<double *>(taskData->outputs[0]);
   foxBlockedParallel.run();
   foxBlockedParallel.post_processing();
+
   // Check the output
-  for (size_t i = 0; i < 4; ++i) {
+  for (size_t i = 0; i < 9; ++i) {
     ASSERT_DOUBLE_EQ(output[i], expectedOutput[i]);
   }
-  // Free memory
+
+  // Free allocated memory
   delete[] output;
 }
+
+
 
 TEST(FoxBlockedParallel, MatrixMultiplication) {
   // Define input matrices
