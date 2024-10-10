@@ -12,9 +12,9 @@
 
 namespace MusaevIlgarOmp {
 
-class MyRadixSortDouble : public ppc::core::Task {
+class RadixSortDoubleBatcherSequential : public ppc::core::Task {
  public:
-  explicit MyRadixSortDouble(std::shared_ptr<ppc::core::TaskData> taskData_)
+  explicit RadixSortDoubleBatcherSequential(std::shared_ptr<ppc::core::TaskData> taskData_)
       : Task(std::move(taskData_)) {}
 
   bool pre_processing() override;
@@ -47,7 +47,7 @@ void partSortSeq(std::vector<std::vector<double>>& parts, std::vector<double>& s
 std::vector<double> radixSortBatcherSeq(std::vector<double> vec);
 
 std::vector<double> batchersMergeOmp(std::vector<std::vector<double>>& subvectors);
-void myPartSortOmp(std::vector<std::vector<double>>& parts, std::vector<double>& side);
+void partSortOmp(std::vector<std::vector<double>>& parts, std::vector<double>& side);
 std::vector<double> radixSortBatcherOmp(std::vector<double> vec);
 
 std::vector<double> randomVector(int sizeVec, double minValue, double maxValue);
