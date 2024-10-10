@@ -3,7 +3,7 @@
 
 namespace MusaevIlgarOmp {
 
-constexpr int sizeDouble = sizeof(double);
+constexpr int mySizeD = sizeof(double);
 
 bool RadixSortDoubleBatcherSequential::pre_processing() {
   internal_order_test();
@@ -58,7 +58,7 @@ std::vector<double> batchersMergeSeq(std::vector<std::vector<double>> &subvector
 }
 
 void partSortSeq(std::vector<std::vector<double>> &parts, std::vector<double> &side) {
-  for (int i = 0; i < sizeDouble; ++i) {
+  for (int i = 0; i < mySizeD; ++i) {
     for (auto &j : side) {
       auto temp = static_cast<uint64_t>(j);
       temp >>= i * 8;
@@ -75,7 +75,7 @@ void partSortSeq(std::vector<std::vector<double>> &parts, std::vector<double> &s
 }
 
 std::vector<double> radixSortBatcherSeq(std::vector<double> vec) {
-  uint64_t mask = static_cast<uint64_t>(1) << (sizeDouble * 8 - 1);
+  uint64_t mask = static_cast<uint64_t>(1) << (mySizeD * 8 - 1);
   std::vector<double> positive;
   std::vector<double> negative;
 
@@ -156,7 +156,7 @@ std::vector<double> batchersMergeOmp(std::vector<std::vector<double>> &subvector
 
 void partSortOmp(std::vector<std::vector<double>> &parts, std::vector<double> &side) {
 #pragma omp parallel for
-  for (int i = 0; i < sizeDouble; ++i) {
+  for (int i = 0; i < mySizeD; ++i) {
     for (unsigned long int j = 0; j < side.size(); ++j) {
       auto temp = static_cast<uint64_t>(side[j]);
       temp >>= i * 8;
@@ -173,7 +173,7 @@ void partSortOmp(std::vector<std::vector<double>> &parts, std::vector<double> &s
 }
 
 std::vector<double> radixSortBatcherOmp(std::vector<double> vec) {
-  uint64_t mask = static_cast<uint64_t>(1) << (sizeDouble * 8 - 1);
+  uint64_t mask = static_cast<uint64_t>(1) << (mySizeD * 8 - 1);
   std::vector<double> positive;
   std::vector<double> negative;
 
