@@ -1,6 +1,7 @@
 //  Copyright 2024 Smirnov Pavel
 #include <gtest/gtest.h>
 #include <omp.h>
+
 #include "core/perf/include/perf.hpp"
 #include "omp/smirnov_p_matrix_fox_omp/include/ops_omp.hpp"
 

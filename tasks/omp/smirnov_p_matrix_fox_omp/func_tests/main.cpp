@@ -1,6 +1,8 @@
 //  Copyright 2024 Smirnov Pavel
 #include <gtest/gtest.h>
+
 #include <vector>
+
 #include "omp/smirnov_p_matrix_fox_omp/include/ops_omp.hpp"
 
 using namespace SmirnovOMP;
@@ -15,16 +17,16 @@ TEST(FoxBlockedParallel, MatrixMultiplication3x3) {
   auto taskData = std::make_shared<ppc::core::TaskData>();
 
   // Add matrices A and B as inputs
-  taskData->inputs.emplace_back(reinterpret_cast<uint8_t*>(matrixA.data()));
+  taskData->inputs.emplace_back(reinterpret_cast<uint8_t *>(matrixA.data()));
   taskData->inputs_count.emplace_back(3);
   taskData->inputs_count.emplace_back(3);
-  taskData->inputs.emplace_back(reinterpret_cast<uint8_t*>(matrixB.data()));
+  taskData->inputs.emplace_back(reinterpret_cast<uint8_t *>(matrixB.data()));
   taskData->inputs_count.emplace_back(3);
   taskData->inputs_count.emplace_back(3);
 
   // Allocate memory for output and add it as output
   auto output = new double[9];
-  taskData->outputs.emplace_back(reinterpret_cast<uint8_t*>(output));
+  taskData->outputs.emplace_back(reinterpret_cast<uint8_t *>(output));
   taskData->outputs_count.emplace_back(3);
   taskData->outputs_count.emplace_back(3);
 
@@ -43,8 +45,6 @@ TEST(FoxBlockedParallel, MatrixMultiplication3x3) {
   // Free allocated memory
   delete[] output;
 }
-
-
 
 TEST(FoxBlockedParallel, MatrixMultiplication) {
   // Define input matrices

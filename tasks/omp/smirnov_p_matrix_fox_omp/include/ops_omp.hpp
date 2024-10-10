@@ -4,6 +4,7 @@
 #include <memory>
 #include <utility>
 #include <vector>
+
 #include "core/task/include/task.hpp"
 
 namespace SmirnovOMP {
@@ -17,6 +18,7 @@ class FoxBlockedSequential : public ppc::core::Task {
   bool validation() override;
   bool run() override;
   bool post_processing() override;
+
  private:
   Matrix A{};
   Matrix B{};
@@ -30,6 +32,7 @@ class FoxBlockedParallel : public ppc::core::Task {
   bool validation() override;
   bool run() override;
   bool post_processing() override;
+
  private:
   Matrix A{};
   Matrix B{};
